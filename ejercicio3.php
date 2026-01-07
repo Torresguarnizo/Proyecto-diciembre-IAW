@@ -6,7 +6,7 @@
 - foreach -->  Recorre arrays
 */
 // Texto original
-$texto = "PHP no está muerto… solo sigue trabajando silenciosamente en el 80% de Internet";
+$texto = "PHP no está muerto… solo sigue trabajando silenciosamente en el 80% de Internet, pero PHP si esta muerto";
 
 // Convertir el texto a minúsculas
 $texto = strtolower($texto);
@@ -42,20 +42,26 @@ echo "<h3>Palabras repetidas</h3>";
 
 $maxRepeticiones = 0;
 $palabraMasRepetida = "";
+// Como en la frase de ejemplo no hay palabras repetidas pongo este codigo para que tenga sentido,pero he cambiado la frase tambien para que se entienda mejor el ejemplo, poniendo palabras repetidas
+$hayRepetidas = false;
+
 
 foreach ($contador as $palabra => $cantidad) {
 
     if ($cantidad > 1) {
         echo "$palabra → $cantidad veces<br>";
-    }
+        $hayRepetidas = true;
 
-    // Comprobar la más repetida
-    if ($cantidad > $maxRepeticiones) {
-        $maxRepeticiones = $cantidad;
-        $palabraMasRepetida = $palabra;
+        if ($cantidad > $maxRepeticiones) {
+            $maxRepeticiones = $cantidad;
+            $palabraMasRepetida = $palabra;
+        }
     }
 }
 
-//Mostrar la palabra más repetida
-echo "<h3>Palabra más repetida</h3>";
-echo "$palabraMasRepetida ($maxRepeticiones veces)";
+if ($hayRepetidas) {
+    echo "<h3>Palabra más repetida</h3>";
+    echo "$palabraMasRepetida ($maxRepeticiones veces)";
+} else {
+    echo "<h3>No hay palabras repetidas en el texto</h3>";
+}
